@@ -1,0 +1,213 @@
+<?php echo $_SESSION['user']['username']; ?>
+ <?php if ($userRow=="") {
+
+                        echo "<div class='row'>";
+                            echo "<div class='col-lg-12'>";
+                                echo "<div class='alert alert-info alert-dismissable'>";
+                                echo "<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>";
+                                echo " <i class='fa fa-info-circle'></i>  <strong>Please complete your profile." ;
+                            echo "  </div>";
+                        echo "</div>";
+
+
+                    } else {
+
+                    }
+
+
+
+                     <div class="col-md-4">
+                                <div class="modal fade" id="myModal" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                                            aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="panel panel-primary">
+
+                                                    <!-- panel heading starat -->
+
+                                                    <!-- panel heading end -->
+                                                    <!-- panel content start -->
+                                                    <div class="bootstrap-iso">
+                                                        <div class="container-fluid">
+                                                            <div class="row">
+
+                                                                <form class="form-horizontal" method="post">
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField"
+                                                                               for="date_submitted">
+                                                                            Date
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i class="fa fa-calendar">
+                                                                                    </i>
+                                                                                </div>
+                                                                                <input class="form-control" id="date_submitted"
+                                                                                       name="date_submitted" type="date"
+                                                                                       required/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField"
+                                                                               for="businessType">
+                                                                            Business Type
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <select class="select form-control" id="businessType"
+                                                                                    name="businessType"
+                                                                                    type="text" required>
+                                                                                <option value="">Select Type</option>
+                                                                                <option value="parternship">
+                                                                                    Paternship
+                                                                                </option>
+                                                                                <option value="incoporation">
+                                                                                    Incoporation
+                                                                                </option>
+                                                                                <option value="nonproit">
+                                                                                    Non-Profit
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField" for="sector">
+                                                                            Operating Sector
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <select class="select form-control" id="sector" name="sector"
+                                                                                    type="text" required>
+                                                                                <option value="">Select Sector</option>
+                                                                                <option value="agriculture">
+                                                                                    Agriculture
+                                                                                </option>
+                                                                                <option value="manufacturing">
+                                                                                    Manufacturing
+                                                                                </option>
+                                                                                <option value="wholesale">
+                                                                                    Wholesale
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField" for="sector">
+                                                                            Operating Sector
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <select class="select form-control" id="sector" name="sector"
+                                                                                    type="text" required>
+                                                                                <option value="">Select Sector</option>
+                                                                                <option value="agriculture">
+                                                                                    Agriculture
+                                                                                </option>
+                                                                                <option value="manufacturing">
+                                                                                    Manufacturing
+                                                                                </option>
+                                                                                <option value="wholesale">
+                                                                                    Wholesale
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label  requiredField" for="minimum_amount">
+                                                                            Minimum Amount
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i class="fa fa-caret-square-o-up">
+                                                                                    </i>
+                                                                                </div>
+                                                                                <input class="form-control" id="minimum_amount"
+                                                                                       name="minimum_amount" type="number"
+                                                                                       required/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField"
+                                                                               for="maximum_amount">
+                                                                            Maximum Amount
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-addon">
+                                                                                    <i class="fa fa-caret-square-o-up">
+                                                                                    </i>
+                                                                                </div>
+                                                                                <input class="form-control" id="maximum_amount"
+                                                                                       name="maximum_amount" type="number"
+                                                                                       required/>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group form-group-lg">
+                                                                        <label class="control-label col-sm-2 requiredField" for="bookavail">
+                                                                            Status
+                                                                            <span class="asteriskField">
+                                                        *
+                                                       </span>
+                                                                        </label>
+                                                                        <div class="col-sm-10">
+                                                                            <select class="select form-control" id="status" name="status"
+                                                                                    type="text" required>
+                                                                                <option value="">Select Status</option>
+                                                                                <option value="available">
+                                                                                    available
+                                                                                </option>
+                                                                                <option value="notavail">
+                                                                                    notavail
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <div class="col-sm-10 col-sm-offset-2">
+                                                                            <button class="btn btn-primary " name="submit" type="submit">
+                                                                                Submit
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- panel content end -->
+                                                    <!-- panel end -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
