@@ -12,11 +12,9 @@ $select = "SELECT * FROM sme WHERE user_id=" . $user;
 $run_select = mysqli_query($conn, $select);
 $row = mysqli_fetch_array($run_select);
 $userRow = $row['ownerName'];
+$sme_id = $row['id'];
 
-$sql ="select * from provider where user_id='$user'";
-$result =mysqli_query($conn,$sql);
-$row=mysqli_fetch_array($result);
-$id=$row['id'];
+
 ?>
 
 
@@ -36,14 +34,13 @@ $id=$row['id'];
     <li class="active"><a href="index.php">Home </a></li>
     <li><a href="online.php">Online Applications</a></li>
     <li><a href="profile.php">Profile </a></li>
-    <li>SME Name::<?php echo $userRow;?></li>
+    <li>SME Name::<?php echo $userRow; ?></li>
 
     <li><a href="index.php?logout='1"">Logout </a></li>
 </ul>
 <div class="container" style="background-color: #fff">
     <div class="row" style="padding: 30px;">
-        <?php if ($userRow =="") {
-
+        <?php if ($userRow == "") {
 
 
             echo "<div class='alert alert-danger alert-dismissable'>";
@@ -52,110 +49,102 @@ $id=$row['id'];
             echo "  </div>";
 
 
-
         } else {
-         ?>
-            <div class="col-md-4">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h2 class="text-justify panel-title">Online SME Platform</h2></div>
-                    <div class="panel-body">
-                        <h4>Online Loan Application</h4>
-                        <p style="text-align: left;">
+        ?>
+        <div class="col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="text-justify panel-title">Online SME Platform</h2></div>
+                <div class="panel-body">
+                    <h4>Online Loan Application</h4>
+                    <p style="text-align: left;">
                         Offers Online Loan Application application.</p>
-                        <h4>Online Company Registration</h4>
-                        <p style="text-align: left;">
-                            SME can register companies online and get access to information
-                        </p>
-                        <h4>Online Business Forums</h4>
-                        <p style="text-align: left;">
-                           Through online SMS platform .
-                        </p>
+                    <h4>Online Company Registration</h4>
+                    <p style="text-align: left;">
+                        SME can register companies online and get access to information
+                    </p>
+                    <h4>Online Business Forums</h4>
+                    <p style="text-align: left;">
+                        Through online SMS platform .
+                    </p>
 
-                    </div>
                 </div>
             </div>
-            <div class="col-md-8">
-
-    <div class="panel panel-info ">
-        <div class="panel-heading">
-            <h3 class="text-justify panel-title">Approved Applications</h3>
         </div>
-            <div class="panel-body">
-                <table class="table table-hover table-bordered">
-                    <thead>
-                    <tr class="filters">
+        <div class="col-md-8">
 
-                        <th><input type="text" class="form-control" placeholder="Approved Date" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Loan Provider" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Loan Phone" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Loan Amount" disabled></th>
-                        <th><input type="text" class="form-control" placeholder="Approved Status" disabled></th>
+            <div class="panel panel-info ">
+                <div class="panel-heading">
+                    <h3 class="text-justify panel-title">Approved Applications</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
 
-                    </tr>
-                    </thead>
+                            <th>Approved Date</th>
+                            <th>Loan Provider</th>
+                            <th>Amount Payable</th>
+                            <th>Loan Sector</th>
+                            <th>Status</th>
 
-                    <?php
-                    $sql = "SELECT loanRequested,repayment,investments, a.date_created,s.businessType,a.status, p.companyName,ln.minimum_amount
- ,assets ,p.phoneNumber,coName, a.id as id FROM appliedloan a JOIN loan ln ON a.loan_id=ln.id JOIN sme s  ON a.sme_id=s.id join provider p ON ln.provider_id =p.id WHERE a.sme_id='$id' AND 
-                              a.status='approved'";
-                    $res = mysqli_query($conn, $sql);
-                    if (!$res) {
-                        printf("Error: %s\n", mysqli_error($conn));
-                        exit();
-                    }
-                    //+13203453128
-                    //AC0371760d21d76c137119623a9bd1f5fa
-                    //81fabad0d548d9d1451f8ea1cc4c87e7
-                    while ($approvedLoan = mysqli_fetch_array($res)) {
+                        </tr>
+                        </thead>
 
-                        echo "<tbody>";
-                        echo "<tr>";
-                        echo "<td>" . $approvedLoan['date_created'] . "</td>";
-                        echo "<td>" . "$" . $approvedLoan['companyName'] . "</td>";
-                        echo "<td>" . $approvedLoan['phoneNumber'] . "</td>";
-                        echo "<td>" . $approvedLoan['minimum_amount'] . "</td>";
+                        <?php
+                        $sql = "SELECT ln.sector, ln.minimum_amount, p.companyName, a.date_created, a.status FROM appliedloan a 
+                        JOIN loan ln ON a.loan_id=ln.id JOIN provider p ON ln.provider_id=p.id
+                        WHERE a.sme_id='$sme_id' AND a.status='approved'";
+                        $res = mysqli_query($conn, $sql);
+                        if (!$res) {
+                            printf("Error: %s\n", mysqli_error($conn));
+                            exit();
+                        }
 
-                        echo "<td>" . $approvedLoan['status'] . "</td>";
+                        while ($approvedLoan = mysqli_fetch_array($res)) {
+
+                            $sector = $approvedLoan['sector'];
+                            $minimum_amount = $approvedLoan['minimum_amount'];
+                            $date_created = $approvedLoan['date_created'];
+                            $status = $approvedLoan['status'];
+                            $companyName = $approvedLoan['companyName'];
 
 
+                        ?>
+                        <tr>
+                            <td><?php echo $date_created; ?></td>
+                            <td><?php echo $companyName; ?></td>
+                            <td><?php echo $minimum_amount; ?></td>
+                            <td><?php echo $sector; ?></td>
+                            <td><?php echo $status; ?></td>
 
-                        echo "</td>";
 
-                    }
-                    echo "</tr>";
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "<div class='panel panel-default'>";
-                    echo "<div class='col-md-offset-3 pull-right'>";
-                    echo "<button class='btn btn-primary' type='submit' value='Submit' name='submit'>Update</button>";
-                    echo "</div>";
-                    echo "</div>";
-                    ?>
+
+                        </tr>
+                        <?php
+                        }
+
+
+                        ?>
+                </div>
+
             </div>
 
-            </div>
-
+        </div>
     </div>
-            </div>
-        <?php
+    <?php
 
 
-
-        }
-        ?>
-
+    }
+    ?>
 
 
-
-        </div>
+</div>
 </div>
 
 
-
-
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 </body>
 
 </html>

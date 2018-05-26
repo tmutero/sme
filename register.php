@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ehealth Diagnosis System</title>
+	<title>SME</title>
 	<link rel="stylesheet" type="text/css" href="assets/style.css">
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/font-awesome.min.css" rel="stylesheet">

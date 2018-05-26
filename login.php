@@ -25,7 +25,7 @@
            <h4>Log in</h4></center>
             <div class="panel-body">
                 <form role="form" method="post" action="login.php">
-                    <center> <img src="assets/images/app2.jpg" class="img-responsive" alt="logo" height="150px" width="200px"></center>
+                    <center> <img src="assets/images/logo.jpg" class="img-responsive" alt="logo" height="500px" width="200px"></center>
                     <?php echo display_error(); ?>
                     <fieldset>
                         <div class="form-group">

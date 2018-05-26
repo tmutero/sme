@@ -8,6 +8,15 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use Twilio\Rest\Client;
+	include('functions.php');
+	include ('conn.php');
+
+	if (!isAdmin()) {
+		$_SESSION['msg'] = "You must log in first";
+		header('location: ../login.php');
+	}
+$admin = $_SESSION['user']['username'];
+$admin_id = $_SESSION['user']['id'];
 
 // Your Account SID and Auth Token from twilio.com/console
 $account_sid = 'AC0d0511516020eb1f0e4eb7abf2195e67';
@@ -29,7 +38,7 @@ if (isset($_POST['btn'])) {
         '+263774226217',
         array(
             'from' => $twilio_number,
-            'body' => $message.date("Y-m-d")
+            'body' => $message."\n"."Created By-".$admin."\n".date("Y-m-d")
         )
     );
 
